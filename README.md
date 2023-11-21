@@ -1,3 +1,6 @@
 # Projet_CDA
 
-Je commence par la fonction Add Personn dans mon back en créant un manager controller, que je vais renommer Admin dans le back.
+Le projet d'étude est une réalisation de planning pour un groupe d'étudiant. Apres avoir réaliser l'étude conceptuelle,
+ <StartCoding> JAVA.17,SpringBoot, maven
+ 
+ Actuellement=>la fonction Add Personn
