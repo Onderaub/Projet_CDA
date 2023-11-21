@@ -12,14 +12,15 @@ import java.util.List;
 @Entity
 @Table(name="personn")
 public class PersonnRepositoryModel {
-     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idPersonn")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idPersonn")
     private Long id;
-     @OneToMany( mappedBy ="personn")
+
+    @OneToMany(mappedBy = "personn")
     private List<PlanningToolRepositoryModel> tools;
 
-    @OneToMany (mappedBy ="absence")
+    @OneToMany(mappedBy = "personn")
     private List<PlanningAbsenceRepositoryModel> absence;
 
     @Column(name = "name")
@@ -28,14 +29,15 @@ public class PersonnRepositoryModel {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name= "adresse")
+    @Column(name = "adresse")
     private String adresse;
 
-    @Column(name= "e-mail")
+    @Column(name = "e-mail")
     private String email;
 
-    @Column(name="phoneNumber")
+    @Column(name = "phoneNumber")
     private Long phoneNumber;
+
 
     public PersonnRepositoryModel(String name, String surname, String adresse, String email, Long phoneNumber) {
     }

@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("manag")
+@RequestMapping("admin")
 @RestController
 
-public class ManagerController {
+public class AdminController {
     @Autowired
     PersonnService personnService;
     @Autowired

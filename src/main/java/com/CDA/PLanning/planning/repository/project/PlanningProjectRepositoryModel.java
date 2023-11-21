@@ -1,4 +1,6 @@
 package com.CDA.PLanning.planning.repository.project;
+import com.CDA.PLanning.human.repository.admin.AdminRepository;
+import com.CDA.PLanning.human.repository.admin.AdminRepositoryModel;
 import com.CDA.PLanning.planning.repository.startEnd.StartEndRepositoryModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,7 +24,7 @@ public class PlanningProjectRepositoryModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-            @Column (name="planningProjectId")
+            @Column (name="idProject")
             private Long id;
             @Column(name="name")
             private String name;
@@ -30,12 +32,12 @@ public class PlanningProjectRepositoryModel {
             private String place;
             @OneToOne
             @PrimaryKeyJoinColumn
-            private Manager manager;
+            private AdminRepositoryModel admin;
              @Column (name="color")
             private String color;
-             @OneToMany (mappedBy ="planningProject")
-             @PrimaryKeyJoinColumn
+    @OneToMany(mappedBy = "project")
     private List<StartEndRepositoryModel> StartEnd;
+
 
 
     public PlanningProjectRepositoryModel(Date startDate, Date endDate) {

@@ -18,11 +18,12 @@ public class PlanningAbsenceRepositoryModel {
     @Column(name="idAbsence")
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "personn_id")  // Remplacez "personn_id" par le nom de la colonne dans votre table d'absence qui fait référence à la personne
+    @JoinColumn(name = "idPersonn")
     private PersonnRepositoryModel personn;
+
     @Column(name="reason")
     private String reason;
-    @OneToMany (mappedBy = "Absence")
+    @OneToMany(mappedBy = "absence")
     private List<StartEndRepositoryModel> dates;
     @Column(name="color")
     private String color;

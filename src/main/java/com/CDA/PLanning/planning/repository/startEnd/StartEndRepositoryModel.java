@@ -1,6 +1,9 @@
 package com.CDA.PLanning.planning.repository.startEnd;
+import com.CDA.PLanning.planning.repository.absence.PlanningAbsenceRepositoryModel;
 import com.CDA.PLanning.planning.repository.project.PlanningProjectRepository;
+import com.CDA.PLanning.planning.repository.project.PlanningProjectRepositoryModel;
 import com.CDA.PLanning.planning.repository.tool.PlanningToolRepository;
+import com.CDA.PLanning.planning.repository.tool.PlanningToolRepositoryModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +19,6 @@ import java.sql.Date;
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
-
 @Entity
 @Table(name="startEnd")
 public class StartEndRepositoryModel {
@@ -30,8 +32,11 @@ public class StartEndRepositoryModel {
     private Date endDate;
     @OneToOne
     @JoinColumn(name = "idTool")
-    private PlanningToolRepository tool;
+    private PlanningToolRepositoryModel planningTool;
     @ManyToOne
     @JoinColumn(name = "idProject")
-    private PlanningProjectRepository project;
+    private PlanningProjectRepositoryModel project;
+    @ManyToOne
+    @JoinColumn(name = "idAbsence")
+    private PlanningAbsenceRepositoryModel absence;
 }

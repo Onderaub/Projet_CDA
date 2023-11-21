@@ -13,14 +13,13 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
-
 @Entity
 @Table(name="planningTool")
 
 public class PlanningToolRepositoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name="planningToolId")
+    @Column (name="idTool")
     private Long id;
 
     @Column(name="name")
@@ -28,8 +27,8 @@ public class PlanningToolRepositoryModel {
     @Column(name="Quantity")
     private int quantity;
     @OneToOne(mappedBy ="planningTool")
-    @PrimaryKeyJoinColumn
-    private List<StartEndRepositoryModel> StartEnd;
+    @JoinColumn
+    private StartEndRepositoryModel StartEnd;
     @ManyToOne
     @JoinColumn(name = "personn_id")  // Remplacez "personn_id" par le nom de la colonne dans votre table d'absence qui fait référence à la personne
     private PersonnRepositoryModel personn;
