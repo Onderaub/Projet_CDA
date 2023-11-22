@@ -20,12 +20,12 @@ public class PersonnServiceModel {
     private String adresse;
     private String email;
     private Long phoneNumber;
-    @Autowired
-    PersonnRepository personnRepository;
-    public PersonnServiceModel(String name, String surmane, String adresse, String email, Long phoneNumber) {
-    }
 
-
-    public PersonnServiceModel(Optional<Long> id, String name, String adresse, String email, Long phoneNumber) {
+    public PersonnServiceModel(String name, String surname, String adresse, String email, Long phoneNumber) {
+        this.name = name;
+        this.surname = surname;
+        this.adresse = adresse;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 }

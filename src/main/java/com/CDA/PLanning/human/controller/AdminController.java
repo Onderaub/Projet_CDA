@@ -23,12 +23,22 @@ public class AdminController {
 
     @PostMapping("/newSon")
     public boolean add (@RequestBody PersonnDTO personnDTO){
-        PersonnServiceModel personnServiceModel= new PersonnServiceModel(personnDTO.getName(),personnDTO.getSurmane(),personnDTO.getAdresse(),personnDTO.getEmail(),personnDTO.getPhoneNumber());return personnService.add(personnServiceModel);
+        PersonnServiceModel personnServiceModel= new PersonnServiceModel
+                        (personnDTO.getName(),
+                        personnDTO.getSurname(),
+                        personnDTO.getAdresse(),
+                        personnDTO.getEmail(),
+                        personnDTO.getPhoneNumber());
+        System.out.println(personnServiceModel);
+        return personnService.add(personnServiceModel);
 
     }
     @PostMapping("/newProject")
     public boolean add (@RequestBody PlanningProjectDTO planningProjectDTO){
-        PlanningProjectServiceModel planningprojectServiceModel= new PlanningProjectServiceModel(planningProjectDTO.getStartDate(),planningProjectDTO.getEndDate());
+
+        PlanningProjectServiceModel planningprojectServiceModel= new PlanningProjectServiceModel
+                        (planningProjectDTO.getStartDate(),
+                        planningProjectDTO.getEndDate());
         return planningProjectService.add(planningprojectServiceModel);
     }
 }

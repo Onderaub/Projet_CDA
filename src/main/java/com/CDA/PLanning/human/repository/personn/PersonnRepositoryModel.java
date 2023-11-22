@@ -39,6 +39,20 @@ public class PersonnRepositoryModel {
     private Long phoneNumber;
 
 
+    public PersonnRepositoryModel(Long id, String name, String surname, String adresse, String email, Long phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.adresse = adresse;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
     public PersonnRepositoryModel(String name, String surname, String adresse, String email, Long phoneNumber) {
+        this.name = name;
+        this.surname = surname;
+        this.adresse = adresse;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 }
