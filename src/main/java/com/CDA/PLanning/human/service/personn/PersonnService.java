@@ -1,13 +1,13 @@
 package com.CDA.PLanning.human.service.personn;
 
-import com.CDA.PLanning.human.repository.personn.PersonnRepository;
-import com.CDA.PLanning.human.repository.personn.PersonnRepositoryModel;
+import com.CDA.PLanning.human.personn.repository.PersonnRepository;
+import com.CDA.PLanning.human.personn.repository.PersonnRepositoryModel;
 import jakarta.transaction.Transactional;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Optional;
 
 @Data
 @Service
@@ -15,7 +15,7 @@ public class PersonnService {
     @Autowired
     PersonnRepository personnRepository;
     @Transactional
-
+//********************************************PersonnService
         public boolean add(PersonnServiceModel personnServiceModel) {
             // Vérifier que les propriétés nécessaires ne sont pas null
             if (personnServiceModel.getName() == null ||
@@ -46,4 +46,23 @@ public class PersonnService {
             return false;
 
         }
-}}
+}
+
+    public boolean deleteById(Long id) {
+
+            Optional<PersonnRepositoryModel> personnRepositoryModel =
+                    personnRepository.findById(id);
+
+            if (personnRepositoryModel.isPresent()) {
+                // L'objet personn avec l'ID spécifié a été trouvé, supprimerle de la base de données
+                personnRepository.deleteById(id);
+                return true; // Suppression réussie
+            } else {
+                return false; // L'objet avec l'ID spécifié n'a pas été trouvé
+
+        }
+    }
+
+}
+
+
