@@ -11,7 +11,7 @@ import java.util.Optional;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class PersonnServiceModel {
+public class PersonServiceModel {
     private Optional<Long> id;
     private String name;
     private String surname;
@@ -19,7 +19,7 @@ public class PersonnServiceModel {
     private String email;
     private Long phoneNumber;
 
-    public PersonnServiceModel(String name, String surname, String adresse, String email, Long phoneNumber) {
+    public PersonServiceModel(String name, String surname, String adresse, String email, Long phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.adresse = adresse;

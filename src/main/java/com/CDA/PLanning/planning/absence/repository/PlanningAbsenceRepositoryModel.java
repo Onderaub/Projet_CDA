@@ -1,6 +1,6 @@
 package com.CDA.PLanning.planning.absence.repository;
 
-import com.CDA.PLanning.human.personn.repository.PersonnRepositoryModel;
+import com.CDA.PLanning.human.personn.repository.PersonRepositoryModel;
 import com.CDA.PLanning.planning.startEnd.repository.StartEndRepositoryModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,7 @@ public class PlanningAbsenceRepositoryModel {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "idPersonn")
-    private PersonnRepositoryModel personn;
+    private PersonRepositoryModel personn;
 
     @Column(name="reason")
     private String reason;

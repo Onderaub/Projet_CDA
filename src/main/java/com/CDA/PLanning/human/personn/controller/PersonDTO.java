@@ -5,7 +5,7 @@ import java.util.Optional;
 
 @Data
 
-public class PersonnDTO {
+public class PersonDTO {
     private Optional<Long> id;
     private String name;
     private String surname;

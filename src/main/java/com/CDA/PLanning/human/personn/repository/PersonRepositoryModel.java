@@ -10,17 +10,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="personn")
-public class PersonnRepositoryModel {
+@Table(name="person")
+public class PersonRepositoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPersonn")
+    @Column(name = "idPerson")
     private Long id;
 
-    @OneToMany(mappedBy = "personn")
+    @OneToMany(mappedBy = "person")
     private List<PlanningToolRepositoryModel> tools;
 
-    @OneToMany(mappedBy = "personn")
+    @OneToMany(mappedBy = "person")
     private List<PlanningAbsenceRepositoryModel> absence;
 
     @Column(name = "name")
@@ -39,7 +39,7 @@ public class PersonnRepositoryModel {
     private Long phoneNumber;
 
 
-    public PersonnRepositoryModel(Long id, String name, String surname, String adresse, String email, Long phoneNumber) {
+    public PersonRepositoryModel(Long id, String name, String surname, String adresse, String email, Long phoneNumber) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -48,7 +48,7 @@ public class PersonnRepositoryModel {
         this.phoneNumber = phoneNumber;
     }
 
-    public PersonnRepositoryModel(String name, String surname, String adresse, String email, Long phoneNumber) {
+    public PersonRepositoryModel(String name, String surname, String adresse, String email, Long phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.adresse = adresse;
