@@ -28,8 +28,14 @@ public class StartEndRepositoryModel {
     private Date startDate;
     @Column (name="End")
     private Date endDate;
+    @Column(name="idProject", insertable = false, updatable = false)
+    private Long idProject;
+    @Column (name="idTool", insertable = false, updatable = false)
+    private Long idTool;
+    @Column (name="idAbsence", insertable = false, updatable = false)
+    private Long idAbsence;
     @OneToOne
-    @JoinColumn(name = "idTool")
+    @JoinColumn(name = "idTool", insertable = false, updatable = false)
     private PlanningToolRepositoryModel planningTool;
     @ManyToOne
     @JoinColumn(name = "idProject")
@@ -37,4 +43,12 @@ public class StartEndRepositoryModel {
     @ManyToOne
     @JoinColumn(name = "idAbsence")
     private PlanningAbsenceRepositoryModel absence;
+
+    public StartEndRepositoryModel(Date startDate, Date endDate, Long idProject) {
+     this. startDate = startDate;
+    this.endDate= endDate;
+    this.idProject=idProject;
+    }
+
+
 }
