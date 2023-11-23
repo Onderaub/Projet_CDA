@@ -24,6 +24,8 @@ public class PlanningToolRepositoryModel {
     private String name;
     @Column(name="Quantity")
     private int quantity;
+    @Column (name="idperson")
+    private Long person;
     @OneToOne(mappedBy ="planningTool")
     @JoinColumn
     private StartEndRepositoryModel StartEnd;

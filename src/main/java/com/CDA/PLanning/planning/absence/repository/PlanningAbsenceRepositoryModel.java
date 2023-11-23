@@ -17,9 +17,11 @@ public class PlanningAbsenceRepositoryModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idAbsence")
     private Long id;
+    @Column(name="idPerson")
+    private Long idPersonn;
     @ManyToOne
-    @JoinColumn(name = "idPersonn")
-    private PersonRepositoryModel personn;
+    @JoinColumn(name = "idPerson")
+    private PersonRepositoryModel person;
 
     @Column(name="reason")
     private String reason;
