@@ -8,12 +8,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-
+import java.util.Optional;
 
 
 /**
  * The type Client repository model.
  */
+
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
@@ -21,19 +22,21 @@ import java.sql.Date;
 @Table(name="startEnd")
 public class StartEndRepositoryModel {
     @Id
-     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name="startEndId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "startEndId")
     private Long id;
-    @Column (name="start")
+    @Column(name = "start")
     private Date startDate;
-    @Column (name="End")
+    @Column(name = "End")
     private Date endDate;
-    @Column(name="idProject", insertable = false, updatable = false)
+    @Column(name = "idProject", insertable = false, updatable = false)
     private Long idProject;
-    @Column (name="idTool", insertable = false, updatable = false)
+    @Column(name = "idTool", insertable = false, updatable = false)
     private Long idTool;
-    @Column (name="idAbsence", insertable = false, updatable = false)
+    @Column(name = "idAbsence", insertable = false, updatable = false)
     private Long idAbsence;
+
+
     @OneToOne
     @JoinColumn(name = "idTool", insertable = false, updatable = false)
     private PlanningToolRepositoryModel planningTool;
@@ -45,9 +48,9 @@ public class StartEndRepositoryModel {
     private PlanningAbsenceRepositoryModel absence;
 
     public StartEndRepositoryModel(Date startDate, Date endDate, Long idProject) {
-     this. startDate = startDate;
-    this.endDate= endDate;
-    this.idProject=idProject;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.idProject = idProject;
     }
 
 

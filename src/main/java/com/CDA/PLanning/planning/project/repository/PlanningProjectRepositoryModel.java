@@ -1,12 +1,15 @@
 package com.CDA.PLanning.planning.project.repository;
 import com.CDA.PLanning.human.admin.repository.AdminRepositoryModel;
-import com.CDA.PLanning.planning.startEnd.controller.StartEndDTO;
+import com.CDA.PLanning.human.personn.repository.PersonRepositoryModel;
+import com.CDA.PLanning.human.service.admin.AdminServiceModel ;
 import com.CDA.PLanning.planning.startEnd.repository.StartEndRepositoryModel;
+import com.CDA.PLanning.planning.startEnd.service.StartEndServiceModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,13 +30,16 @@ public class PlanningProjectRepositoryModel {
             private Long id;
             @Column(name="name")
             private String name;
-             @Column(name="place")
+            @Column(name="place")
             private String place;
-             @Column (name="color")
+            @Column (name="color")
             private String color;
 
+            @ManyToMany(mappedBy = "project")
+            @PrimaryKeyJoinColumn
+            private List<PersonRepositoryModel> person;
             @OneToMany(mappedBy = "project")
-            private List<StartEndRepositoryModel> startEnd;
+            private StartEndRepositoryModel startEnd;
             @OneToOne
             @PrimaryKeyJoinColumn
             private AdminRepositoryModel admin;
@@ -41,18 +47,15 @@ public class PlanningProjectRepositoryModel {
 
 
 
-    public PlanningProjectRepositoryModel(String name, String place, String color, AdminRepositoryModel admin, List<StartEndRepositoryModel> startEnd) {
+    public PlanningProjectRepositoryModel(String name, String place, String color, AdminRepositoryModel admin, StartEndRepositoryModel startEnd) {
         this.name=name;
         this.place=place;
         this.color=color;
         this.startEnd=startEnd;
         this.admin=admin;
-
+        this.person = new ArrayList<>();
     }
 
-    public PlanningProjectRepositoryModel(String name, String place, String color) {
-        this.name= name;
-        this.place= place;
-        this.color= color;
+    public PlanningProjectRepositoryModel(String name, String place, String color, AdminServiceModel admin, StartEndServiceModel startEnd) {
     }
 }

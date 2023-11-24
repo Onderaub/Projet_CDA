@@ -1,5 +1,6 @@
 package com.CDA.PLanning.planning.project.service;
 import com.CDA.PLanning.human.admin.repository.AdminRepository;
+import com.CDA.PLanning.human.personn.repository.PersonRepositoryModel;
 import com.CDA.PLanning.planning.project.repository.PlanningProjectRepository;
 import com.CDA.PLanning.planning.project.repository.PlanningProjectRepositoryModel;
 import com.CDA.PLanning.planning.startEnd.repository.StartEndRepository;
@@ -23,7 +24,7 @@ public class PlanningProjectService {
     @Autowired
     AdminRepository adminRepository;
     @Transactional
-    public boolean add( PlanningProjectServiceModel planningProjectServiceModel) {
+    public boolean add(PlanningProjectServiceModel planningProjectServiceModel) {
 
         if (planningProjectServiceModel.getName() == null ||
                     planningProjectServiceModel.getPlace() == null ||
@@ -34,24 +35,38 @@ public class PlanningProjectService {
 
         }
 
-        PlanningProjectRepositoryModel planningProjectRepositoryModelReturned = null;
-        // Créé une boucle pour la list StartEnd
-        for (var x : planningProjectServiceModel.getStartEnd()) {
-            PlanningProjectRepositoryModel planningProjectRepositoryModel = new PlanningProjectRepositoryModel
-                    (planningProjectServiceModel.getName(),
-                     planningProjectServiceModel.getPlace(),
-                     planningProjectServiceModel.getColor());
-            planningProjectRepositoryModelReturned = planningProjectRepository.save(planningProjectRepositoryModel);
+        PlanningProjectRepositoryModel planningProjectRepositoryModel = new PlanningProjectRepositoryModel
+                (planningProjectServiceModel.getName(),
+                        planningProjectServiceModel.getPlace(),
+                        planningProjectServiceModel.getColor(),
+                        planningProjectServiceModel.getAdmin(),
+                        planningProjectServiceModel.getStartEnd());
+       var planningProjectRepositoryModelReturned = planningProjectRepository.save(planningProjectRepositoryModel);
+
+       /*
+       if(planningProjectRepositoryModelReturned == null) {
+           return false;
+       }
+
             StartEndRepositoryModel stendrepo = new StartEndRepositoryModel(
-                    x.getStartDate(),
-                    x.getEndDate(),
+                    planningProjectServiceModel.getStartEnd().getStartDate(),
+                    planningProjectServiceModel.getStartEnd().getEndDate(),
                     planningProjectRepositoryModelReturned.getId());
 
             startEndRepository.save(stendrepo);
 
 
+            adminRepository.findById(planningProjectServiceModel.getAdmin().getId());
+
+
+
             System.out.println(planningProjectRepositoryModelReturned);
-        }
+
+
+
+*/
+        System.out.println(planningProjectRepositoryModelReturned);
+
 
         return planningProjectRepositoryModelReturned != null;
     }

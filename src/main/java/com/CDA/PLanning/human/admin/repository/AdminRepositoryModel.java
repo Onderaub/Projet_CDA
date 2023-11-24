@@ -8,9 +8,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="admin")
 public class AdminRepositoryModel {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idadmin")
     private Long idAdmin;
-
 }
+

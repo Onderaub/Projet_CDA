@@ -1,6 +1,8 @@
 package com.CDA.PLanning.planning.project.controller;
 
 import com.CDA.PLanning.human.admin.repository.AdminRepositoryModel;
+import com.CDA.PLanning.human.personn.controller.PersonDTO;
+import com.CDA.PLanning.human.personn.repository.PersonRepositoryModel;
 import com.CDA.PLanning.planning.startEnd.controller.StartEndDTO;
 import com.CDA.PLanning.planning.startEnd.repository.StartEndRepositoryModel;
 import lombok.AllArgsConstructor;
@@ -18,5 +20,5 @@ public class PlanningProjectDTO {
     private String place;
     private String color;
     private AdminRepositoryModel admin;
-    private List<StartEndDTO> startEnd;
+    private StartEndDTO startEnd;
 }

@@ -24,12 +24,12 @@ public class PlanningToolRepositoryModel {
     private String name;
     @Column(name="Quantity")
     private int quantity;
-    @Column (name="idperson")
-    private Long person;
+    @Column (name="idperson",insertable=false, updatable=false)
+    private Long idPerson;
     @OneToOne(mappedBy ="planningTool")
     @JoinColumn
-    private StartEndRepositoryModel StartEnd;
+    private StartEndRepositoryModel idStartEnd;
     @ManyToOne
-    @JoinColumn(name = "personn_id")  // Remplacez "personn_id" par le nom de la colonne dans votre table d'absence qui fait référence à la personne
-    private PersonRepositoryModel personn;
+    @JoinColumn(name = "person_id")  // Remplacez "personn_id" par le nom de la colonne dans votre table d'absence qui fait référence à la personne
+    private PersonRepositoryModel person;
 }

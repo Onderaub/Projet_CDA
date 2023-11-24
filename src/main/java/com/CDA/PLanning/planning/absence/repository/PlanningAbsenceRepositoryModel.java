@@ -17,17 +17,16 @@ public class PlanningAbsenceRepositoryModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idAbsence")
     private Long id;
-    @Column(name="idPerson")
+    @Column(name="reason")
+    private String reason;
+    @Column(name="color")
+    private String color;
+    @Column(name="idPerson",insertable=false, updatable=false)
     private Long idPersonn;
+
+    @OneToMany(mappedBy = "absence")
+    private List<StartEndRepositoryModel> dates;
     @ManyToOne
     @JoinColumn(name = "idPerson")
     private PersonRepositoryModel person;
-
-    @Column(name="reason")
-    private String reason;
-    @OneToMany(mappedBy = "absence")
-    private List<StartEndRepositoryModel> dates;
-    @Column(name="color")
-    private String color;
-
 }
