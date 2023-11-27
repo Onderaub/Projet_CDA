@@ -36,12 +36,12 @@ public class PersonRepositoryModel {
     @Column(name = "phoneNumber")
     private Long phoneNumber;
 
-    @ManyToMany(mappedBy = "person")
-    private PlanningProjectRepositoryModel startEnd;
+    @ManyToMany(mappedBy = "persons")
+    private PlanningProjectRepositoryModel projects;
     @OneToMany(mappedBy = "person")
     private List<PlanningToolRepositoryModel> tools;
     @OneToMany(mappedBy = "person")
-    private List<PlanningAbsenceRepositoryModel> absence;
+    private List<PlanningAbsenceRepositoryModel> absences;
 
 
     /**

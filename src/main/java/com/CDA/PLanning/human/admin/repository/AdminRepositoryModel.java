@@ -17,8 +17,8 @@ public class AdminRepositoryModel extends PersonRepositoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idadmin")
-    private Long idAdmin;
-    private Long idperson;
+    private Long id;
+    private Long personId;
 
 }
 

@@ -9,6 +9,8 @@ import com.CDA.PLanning.human.service.personn.PersonServiceModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /**
  * The type Admin service.
  */
@@ -25,23 +27,25 @@ public class AdminService  extends PersonService {
     /**
      * Add admin boolean.
      *
-     * @param personId the person id
+
      * @return the boolean
      */
-    public boolean addAdmin(Long personId) {
-            // Je vérifie si la personne avec l'ID spécifié existe
-            PersonRepositoryModel person = personRepository.findById(personId).orElse(null);
 
-            if (person != null) {
-                // Je Créé un nouvel administrateur en associant la personne existante
-                AdminRepositoryModel admin = new AdminRepositoryModel();
-                admin.setIdPerson(personId);
-                // Je sauvegarde l'administrateur en base de données
-                adminRepository.save(admin);
+   public boolean addAdmin(AdminServiceModel adminServiceModel) {
+        // Je vérifie si la personne avec l'ID spécifié existe
+        Long personId = adminServiceModel.getPersonId();
+        Optional<PersonRepositoryModel> personOptional = personRepository.findById(personId);
 
-                return true;
-            } else {
-                return false; // La personne avec l'ID spécifié n'a pas été trouvée
-            }
+        if (personOptional.isPresent()) {
+            // Je Crée un nouvel administrateur en associant la personne existante
+            AdminRepositoryModel admin = new AdminRepositoryModel();
+            admin.setIdPerson(personId);
+            // Je sauvegarde l'administrateur en base de données
+            adminRepository.save(admin);
+            return true;
+        } else {
+            return false; // La personne avec l'ID spécifié n'a pas été trouvée
         }
+    }
+
 }

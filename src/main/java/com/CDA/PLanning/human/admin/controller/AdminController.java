@@ -1,5 +1,6 @@
-package com.CDA.PLanning.human.admin;
+package com.CDA.PLanning.human.admin.controller;
 
+import com.CDA.PLanning.human.admin.AdminDTO;
 import com.CDA.PLanning.human.personn.controller.PersonDTO;
 import com.CDA.PLanning.human.service.admin.AdminService;
 import com.CDA.PLanning.human.service.admin.AdminServiceModel;

@@ -1,10 +1,9 @@
 package com.CDA.PLanning.human.service.admin;
 
 import com.CDA.PLanning.human.service.personn.PersonServiceModel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Optional;
 
 /**
  * The type Admin service model.
@@ -12,7 +11,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-@Data
+@NoArgsConstructor
 public class AdminServiceModel extends PersonServiceModel {
-
+    private Optional<Long> id;
+    private Long  personId;
 }

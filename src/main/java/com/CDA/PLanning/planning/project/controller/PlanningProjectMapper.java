@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.Optional;
+
 /**
  * The interface Planning project mapper.
  */
@@ -26,5 +28,11 @@ public interface PlanningProjectMapper {
      */
     PlanningProjectServiceModel toServiceModel(PlanningProjectDTO project);
 
+    default Optional<Long> map(Long value) {
+        return Optional.ofNullable(value);
+    }
 
+    default Long map(Optional<Long> value) {
+        return value.orElse(null);
+    }
 }

@@ -1,6 +1,4 @@
-package com.CDA.PLanning.human.admin;
-
-import com.CDA.PLanning.human.personn.controller.PersonGetDTO;
+package com.CDA.PLanning.human.admin.controller;
 
 /**
  * The type Admin get dto.

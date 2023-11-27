@@ -12,7 +12,7 @@ import java.util.Optional;
 /**
  * The type Person service.
  */
-@Data
+
 @Service
 public class PersonService {
     /**

@@ -35,9 +35,8 @@ public class PlanningProjectRepositoryModel {
             @Column (name="color")
             private String color;
 
-            @ManyToMany(mappedBy = "project")
-            @PrimaryKeyJoinColumn
-            private List<PersonRepositoryModel> person;
+            @ManyToMany(mappedBy = "projects")
+            private List<PersonRepositoryModel> persons;
             @OneToMany(mappedBy = "project")
             private StartEndRepositoryModel startEnd;
             @OneToOne
@@ -54,13 +53,13 @@ public class PlanningProjectRepositoryModel {
      * @param admin    the admin
      * @param startEnd the start end
      */
-    public PlanningProjectRepositoryModel(String name, String place, String color, AdminRepositoryModel admin, StartEndRepositoryModel startEnd) {
+    public PlanningProjectRepositoryModel(String name, String place, String color, AdminRepositoryModel admin, StartEndRepositoryModel startEnd,List<PersonRepositoryModel> persons) {
         this.name=name;
         this.place=place;
         this.color=color;
         this.startEnd=startEnd;
         this.admin=admin;
-        this.person = new ArrayList<>();
+        this.persons = new ArrayList<>();
     }
 
     /**
