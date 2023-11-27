@@ -9,7 +9,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The type Person repository model.
@@ -36,12 +39,17 @@ public class PersonRepositoryModel {
     @Column(name = "phoneNumber")
     private Long phoneNumber;
 
-    @ManyToMany(mappedBy = "persons")
-    private PlanningProjectRepositoryModel projects;
+    @ManyToMany
+    @JoinTable(
+            name = "person_project",  // Nom de la table de jointure
+            joinColumns = @JoinColumn(name = "person_id"),  // Colonne de la table person
+            inverseJoinColumns = @JoinColumn(name = "project_id")  // Colonne de la table project
+    )
+    private Set<PlanningProjectRepositoryModel> projects = new HashSet<>();
     @OneToMany(mappedBy = "person")
-    private List<PlanningToolRepositoryModel> tools;
+    private List<PlanningToolRepositoryModel> tools = new ArrayList<>();
     @OneToMany(mappedBy = "person")
-    private List<PlanningAbsenceRepositoryModel> absences;
+    private List<PlanningAbsenceRepositoryModel> absences = new ArrayList<>();
 
 
     /**

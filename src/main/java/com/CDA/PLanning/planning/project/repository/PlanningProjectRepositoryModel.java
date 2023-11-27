@@ -10,7 +10,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -36,8 +38,8 @@ public class PlanningProjectRepositoryModel {
             private String color;
 
             @ManyToMany(mappedBy = "projects")
-            private List<PersonRepositoryModel> persons;
-            @OneToMany(mappedBy = "project")
+            private Set<PersonRepositoryModel> persons = new HashSet<>();
+            @OneToOne(mappedBy = "project")
             private StartEndRepositoryModel startEnd;
             @OneToOne
             @PrimaryKeyJoinColumn
@@ -53,13 +55,13 @@ public class PlanningProjectRepositoryModel {
      * @param admin    the admin
      * @param startEnd the start end
      */
-    public PlanningProjectRepositoryModel(String name, String place, String color, AdminRepositoryModel admin, StartEndRepositoryModel startEnd,List<PersonRepositoryModel> persons) {
+    public PlanningProjectRepositoryModel(String name, String place, String color, AdminRepositoryModel admin, StartEndRepositoryModel startEnd,Set<PersonRepositoryModel> persons) {
         this.name=name;
         this.place=place;
         this.color=color;
         this.startEnd=startEnd;
         this.admin=admin;
-        this.persons = new ArrayList<>();
+        this.persons = persons;
     }
 
     /**
