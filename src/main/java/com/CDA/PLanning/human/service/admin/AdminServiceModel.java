@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * The type Admin service model.
+ */
 @Getter
 @Setter
 @AllArgsConstructor

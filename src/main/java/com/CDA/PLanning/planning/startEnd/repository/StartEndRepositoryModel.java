@@ -14,7 +14,6 @@ import java.util.Optional;
 /**
  * The type Client repository model.
  */
-
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
@@ -47,6 +46,13 @@ public class StartEndRepositoryModel {
     @JoinColumn(name = "idAbsence")
     private PlanningAbsenceRepositoryModel absence;
 
+    /**
+     * Instantiates a new Start end repository model.
+     *
+     * @param startDate the start date
+     * @param endDate   the end date
+     * @param idProject the id project
+     */
     public StartEndRepositoryModel(Date startDate, Date endDate, Long idProject) {
         this.startDate = startDate;
         this.endDate = endDate;

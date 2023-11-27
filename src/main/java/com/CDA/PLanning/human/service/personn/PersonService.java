@@ -9,16 +9,25 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * The type Person service.
+ */
 @Data
 @Service
 public class PersonService {
+    /**
+     * The Person repository.
+     */
     @Autowired
     PersonRepository personRepository;
 
 
-
-
-
+    /**
+     * Add boolean.
+     *
+     * @param personServiceModel the person service model
+     * @return the boolean
+     */
 //********************************************PersonnService
         public boolean add(PersonServiceModel personServiceModel) {
             // Vérifier que les propriétés nécessaires ne sont pas null
@@ -52,6 +61,12 @@ public class PersonService {
         }
 }
 
+    /**
+     * Delete by id boolean.
+     *
+     * @param id the id
+     * @return the boolean
+     */
     public boolean deleteById(Long id) {
 
             Optional<PersonRepositoryModel> personRepositoryModel =

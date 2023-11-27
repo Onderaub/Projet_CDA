@@ -8,6 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+/**
+ * The type Planning tool repository model.
+ */
 @NoArgsConstructor
 @Data
 @AllArgsConstructor

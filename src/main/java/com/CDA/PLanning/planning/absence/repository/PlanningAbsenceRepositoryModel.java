@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * The type Planning absence repository model.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

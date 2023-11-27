@@ -15,7 +15,6 @@ import java.util.Optional;
 /**
  * The type Client service model.
  */
-
 @Getter
 @Setter
 @AllArgsConstructor

@@ -12,6 +12,9 @@ import java.sql.Date;
 import java.util.Optional;
 
 
+/**
+ * The type Start end service model.
+ */
 @Getter
 @Setter
 @AllArgsConstructor

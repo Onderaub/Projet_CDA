@@ -5,5 +5,8 @@ import com.CDA.PLanning.planning.startEnd.repository.StartEndRepositoryModel;
 
 import java.util.List;
 
+/**
+ * The type Planning project get dto.
+ */
 public record PlanningProjectGetDTO(long id, String name, String place, String color, AdminRepositoryModel adminDate, List<StartEndRepositoryModel> startEnd) {
 }

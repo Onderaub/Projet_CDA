@@ -10,10 +10,20 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.Optional;
+
+/**
+ * The type Start end service.
+ */
 @Service
 public class StartEndService {
+    /**
+     * The Planning project repository.
+     */
     @Autowired
     PlanningProjectRepository planningProjectRepository;
+    /**
+     * The Start end repository.
+     */
     @Autowired
     StartEndRepository startEndRepository;
 

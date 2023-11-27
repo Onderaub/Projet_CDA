@@ -45,8 +45,15 @@ public class PlanningProjectRepositoryModel {
             private AdminRepositoryModel admin;
 
 
-
-
+    /**
+     * Instantiates a new Planning project repository model.
+     *
+     * @param name     the name
+     * @param place    the place
+     * @param color    the color
+     * @param admin    the admin
+     * @param startEnd the start end
+     */
     public PlanningProjectRepositoryModel(String name, String place, String color, AdminRepositoryModel admin, StartEndRepositoryModel startEnd) {
         this.name=name;
         this.place=place;
@@ -56,6 +63,15 @@ public class PlanningProjectRepositoryModel {
         this.person = new ArrayList<>();
     }
 
+    /**
+     * Instantiates a new Planning project repository model.
+     *
+     * @param name     the name
+     * @param place    the place
+     * @param color    the color
+     * @param admin    the admin
+     * @param startEnd the start end
+     */
     public PlanningProjectRepositoryModel(String name, String place, String color, AdminServiceModel admin, StartEndServiceModel startEnd) {
     }
 }

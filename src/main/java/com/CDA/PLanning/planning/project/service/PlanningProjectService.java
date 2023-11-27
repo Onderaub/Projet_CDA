@@ -17,12 +17,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class PlanningProjectService {
 
+    /**
+     * The Planning project repository.
+     */
     @Autowired
     PlanningProjectRepository planningProjectRepository;
+    /**
+     * The Start end repository.
+     */
     @Autowired
     StartEndRepository startEndRepository;
+    /**
+     * The Admin repository.
+     */
     @Autowired
     AdminRepository adminRepository;
+
+    /**
+     * Add boolean.
+     *
+     * @param planningProjectServiceModel the planning project service model
+     * @return the boolean
+     */
     @Transactional
     public boolean add(PlanningProjectServiceModel planningProjectServiceModel) {
 

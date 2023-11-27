@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import java.sql.Date;
 import java.util.Optional;
 
+/**
+ * The type Start end dto.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

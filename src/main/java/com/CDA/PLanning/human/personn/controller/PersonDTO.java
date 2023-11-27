@@ -3,6 +3,9 @@ import lombok.Data;
 
 import java.util.Optional;
 
+/**
+ * The type Person dto.
+ */
 @Data
 
 public class PersonDTO {
