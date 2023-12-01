@@ -1,8 +1,6 @@
 package com.CDA.PLanning.human.service;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,13 +12,15 @@ import java.util.Optional;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Getter
+@Setter
 public class PersonServiceModel {
     private Optional<Long> id;
     private String name;
     private String surname;
     private String adresse;
     private String email;
-    private Long phoneNumber;
+    private String phoneNumber;
 
     /**
      * Instantiates a new Person service model.
@@ -31,7 +31,7 @@ public class PersonServiceModel {
      * @param email       the email
      * @param phoneNumber the phone number
      */
-    public PersonServiceModel(String name, String surname, String adresse, String email, Long phoneNumber) {
+    public PersonServiceModel(String name, String surname, String adresse, String email, String phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.adresse = adresse;

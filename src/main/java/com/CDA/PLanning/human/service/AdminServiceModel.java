@@ -17,10 +17,12 @@ public class AdminServiceModel extends PersonServiceModel {
     private String surname;
     private String adresse;
     private String email;
-    private Long phoneNumber;
+    private String phoneNumber;
 
 
-    public AdminServiceModel(String name, String surname, String adresse, String email, Long phoneNumber) {
+
+
+    public AdminServiceModel(String name, String surname, String adresse, String email, String phoneNumber) {
         this.name=name;
         this.surname= surname;
         this.adresse=adresse;

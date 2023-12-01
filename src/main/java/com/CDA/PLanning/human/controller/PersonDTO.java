@@ -1,7 +1,5 @@
 package com.CDA.PLanning.human.controller;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Optional;
 
@@ -9,14 +7,15 @@ import java.util.Optional;
  * The type Person dto.
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
 public class PersonDTO {
-    private Long personId;
+    private Long id;
     private String name;
     private String surname;
     private String adresse;
     private String email;
-    private Long phoneNumber;
-
+    private String phoneNumber;
 }

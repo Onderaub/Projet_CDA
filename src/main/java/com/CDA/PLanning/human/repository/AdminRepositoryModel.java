@@ -28,10 +28,12 @@ public class AdminRepositoryModel {
     @Column(name = "e-mail")
     private String email;
     @Column(name = "phoneNumber")
-    private Long phoneNumber;
+    private String phoneNumber;
 
 
-    public AdminRepositoryModel(String name, String surname, String adresse, String email, Long phoneNumber) {
+
+
+    public AdminRepositoryModel(String name, String surname, String adresse, String email, String phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.adresse = adresse;

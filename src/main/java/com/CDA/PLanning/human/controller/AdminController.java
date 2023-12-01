@@ -1,6 +1,7 @@
 package com.CDA.PLanning.human.controller;
 
 import com.CDA.PLanning.Mapper;
+import com.CDA.PLanning.exceptions.PersonNotFoundException;
 import com.CDA.PLanning.human.service.AdminService;
 import com.CDA.PLanning.human.service.AdminServiceModel;
 import com.CDA.PLanning.human.service.PersonServiceModel;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 /**
  * The type Admin controller.
@@ -53,6 +56,22 @@ public class AdminController {
         AdminServiceModel adminServiceModel= new AdminServiceModel( adminDTO.getName(),adminDTO.getSurname(), adminDTO.getAdresse(), adminDTO.getEmail(),adminDTO.getPhoneNumber());
         return adminService.addAdmin(adminServiceModel);
     }
+    @GetMapping("/{id}")
+    public AdminDTO findById(@PathVariable Long id) throws PersonNotFoundException {
+        AdminDTO adminDTO = new AdminDTO();
 
+        AdminServiceModel adminServiceModel = adminService.findById(id);
+        adminDTO.setId(Optional.ofNullable(id));
+        adminDTO.setName(adminServiceModel.getName());
+        adminDTO.setSurname(adminServiceModel.getSurname());
+        adminDTO.setAdresse(adminServiceModel.getAdresse());
+        adminDTO.setEmail(adminServiceModel.getEmail());
+        adminDTO.setPhoneNumber(adminDTO.getPhoneNumber());
+
+        return new ResponseEntity<>(adminDTO, HttpStatus.OK).getBody();
+
+
+
+    }
 
 }

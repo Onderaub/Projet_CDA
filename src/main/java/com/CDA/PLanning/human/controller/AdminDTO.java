@@ -18,6 +18,6 @@ public class AdminDTO {
     private String surname;
     private String adresse;
     private String email;
-    private Long phoneNumber;
+    private String phoneNumber;
 
 }

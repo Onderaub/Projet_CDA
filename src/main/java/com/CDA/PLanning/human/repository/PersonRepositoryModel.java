@@ -19,8 +19,8 @@ import java.util.*;
 public class PersonRepositoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "personId")
-    private Long personId;
+    @Column(name = "id")
+    private Long id;
     @Column(name = "name")
     private String name;
     @Column(name = "surname")
@@ -30,7 +30,7 @@ public class PersonRepositoryModel {
     @Column(name = "e-mail")
     private String email;
     @Column(name = "phoneNumber")
-    private Long phoneNumber;
+    private String phoneNumber;
 
     /*
     @ManyToMany
@@ -68,7 +68,7 @@ public class PersonRepositoryModel {
      * @param email       the email
      * @param phoneNumber the phone number
      */
-    public PersonRepositoryModel(String name, String surname, String adresse, String email, Long phoneNumber) {
+    public PersonRepositoryModel(String name, String surname, String adresse, String email, String phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.adresse = adresse;
