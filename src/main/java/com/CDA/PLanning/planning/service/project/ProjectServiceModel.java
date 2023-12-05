@@ -1,7 +1,6 @@
-package com.CDA.PLanning.human.service;
+package com.CDA.PLanning.planning.service.project;
 
 import lombok.*;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
@@ -14,28 +13,18 @@ import java.util.Optional;
 @Data
 @Getter
 @Setter
-public class PersonServiceModel {
+public class ProjectServiceModel {
     private Optional<Long> id;
     private String name;
-    private String surname;
-    private String adresse;
-    private String email;
-    private String phoneNumber;
+    private String directeur;
+    private String place;
 
-    /**
-     * Instantiates a new Person service model.
-     *
-     * @param name        the name
-     * @param surname     the surname
-     * @param adresse     the adresse
-     * @param email       the email
-     * @param phoneNumber the phone number
-     */
-    public PersonServiceModel(String name, String surname, String adresse, String email, String phoneNumber) {
+
+
+    public ProjectServiceModel(String name, String directeur, String place) {
         this.name = name;
-        this.surname = surname;
-        this.adresse = adresse;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.directeur = directeur;
+        this.place = place;
+
     }
 }

@@ -1,11 +1,9 @@
-package com.CDA.PLanning.human.repository;
+package com.CDA.PLanning.planning.repository.project;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.*;
 
 /**
  * The type Person repository model.
@@ -15,22 +13,19 @@ import java.util.*;
 @Setter
 @Getter
 @Entity
-@Table(name="person")
-public class PersonRepositoryModel {
+@Table(name="project")
+public class ProjectRepositoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "surname")
-    private String surname;
-    @Column(name = "adresse")
-    private String adresse;
-    @Column(name = "e-mail")
-    private String email;
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
+    @Column(name = "directeur")
+    private String directeur;
+    @Column(name = "place")
+    private String place;
+
 
     /*
     @ManyToMany
@@ -63,21 +58,17 @@ public class PersonRepositoryModel {
      * Instantiates a new Person repository model.
      *
      * @param name        the name
-     * @param surname     the surname
-     * @param adresse     the adresse
-     * @param email       the email
-     * @param phoneNumber the phone number
+
      */
-    public PersonRepositoryModel(String name, String surname, String adresse, String email, String phoneNumber) {
+    public ProjectRepositoryModel(String name, String directeur, String place) {
         this.name = name;
-        this.surname = surname;
-        this.adresse = adresse;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.directeur = directeur;
+        this.place = place;
+
     }
 
 
-    public PersonRepositoryModel(String name) {
+    public ProjectRepositoryModel(String name) {
 
     }
 }

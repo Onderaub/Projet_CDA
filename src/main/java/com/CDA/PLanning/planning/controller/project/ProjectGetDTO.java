@@ -1,7 +1,7 @@
-package com.CDA.PLanning.human.controller;
+package com.CDA.PLanning.planning.controller.project;
 
 /**
  * The type Person get dto.
  */
-public record PersonGetDTO(Long id, String name, String surname, String adresse, String email, String phoneNumber){
+public record ProjectGetDTO(Long id, String name, String Directeur, String place){
 }

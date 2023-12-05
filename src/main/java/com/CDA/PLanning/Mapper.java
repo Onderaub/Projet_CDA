@@ -4,6 +4,8 @@ import com.CDA.PLanning.human.controller.AdminDTO;
 import com.CDA.PLanning.human.repository.AdminRepositoryModel;
 import com.CDA.PLanning.human.controller.PersonDTO;
 import com.CDA.PLanning.human.service.PersonServiceModel;
+import com.CDA.PLanning.planning.controller.project.ProjectDTO;
+import com.CDA.PLanning.planning.service.project.ProjectServiceModel;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
@@ -28,4 +30,7 @@ public interface Mapper {
     default Long map(Optional<Long> value) {
         return value.orElse(null);
     }
+
+    @Mapping(target = "id", ignore=true)
+    ProjectServiceModel toProjectServiceModel(ProjectDTO projectDTO);
 }

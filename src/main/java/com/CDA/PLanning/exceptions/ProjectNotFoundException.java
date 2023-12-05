@@ -1,2 +1,8 @@
-package com.CDA.PLanning.exceptions;public class ProjectNotFoundException {
+package com.CDA.PLanning.exceptions;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Project Not Found")
+public class ProjectNotFoundException extends RuntimeException{
 }

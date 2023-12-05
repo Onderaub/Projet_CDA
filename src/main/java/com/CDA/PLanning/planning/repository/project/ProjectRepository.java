@@ -1,4 +1,4 @@
-package com.CDA.PLanning.human.repository;
+package com.CDA.PLanning.planning.repository.project;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -7,13 +7,13 @@ import java.util.Optional;
 /**
  * The interface Person repository.
  */
-public interface PersonRepository extends CrudRepository<PersonRepositoryModel, Long> {
-    PersonRepositoryModel save(PersonRepositoryModel personnRepositoryModel);
+public interface ProjectRepository extends CrudRepository<ProjectRepositoryModel, Long> {
+    ProjectRepositoryModel save(ProjectRepositoryModel personnRepositoryModel);
 
-    Iterable<PersonRepositoryModel> findAll();
+    Iterable<ProjectRepositoryModel> findAll();
 
-    Optional<PersonRepositoryModel> findById(Long id);
+    Optional<ProjectRepositoryModel> findById(Long id);
 
 
-    Optional<PersonRepositoryModel> findByName(String name);
+    Optional<ProjectRepositoryModel> findByName(String name);
 }

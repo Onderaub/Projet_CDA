@@ -1,13 +1,10 @@
-package com.CDA.PLanning.human.service;
+package com.CDA.PLanning.planning.service.project;
 
-import com.CDA.PLanning.exceptions.PersonNotFoundException;
-import com.CDA.PLanning.human.repository.PersonRepository;
 
-import com.CDA.PLanning.human.repository.PersonRepositoryModel;
-import com.CDA.PLanning.planning.repository.absence.AbsenceRepositoryModel;
+import com.CDA.PLanning.planning.repository.project.ProjectRepository;
+import com.CDA.PLanning.planning.repository.project.ProjectRepositoryModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.Optional;
 
@@ -16,37 +13,33 @@ import java.util.Optional;
  */
 
 @Service
-public class PersonService {
+public class ProjectService {
     /**
-     * The Person repository.
+     * The Project repository.
      */
     @Autowired
-    PersonRepository personRepository;
+    ProjectRepository projectRepository;
 
-    public boolean addPerson(PersonServiceModel personServiceModel) {
+    public boolean addProject(ProjectServiceModel projectServiceModel) {
         // Vérifier que les propriétés nécessaires ne sont pas null
-        if (personServiceModel.getName() == null ||
-                personServiceModel.getSurname() == null ||
-                personServiceModel.getAdresse() == null ||
-                personServiceModel.getEmail() == null ||
-                personServiceModel.getPhoneNumber() == null) {
+        if (projectServiceModel.getName() == null ||
+                projectServiceModel.getDirecteur() == null ||
+                projectServiceModel.getPlace() == null ) {
             return false;
         }
         // Enregistre Le model du personne au format de la bdd en quantifiant les éléments Nom, prenom, etc
-        PersonRepositoryModel personRepositoryModel = new PersonRepositoryModel
-                (personServiceModel.getName(),
-                        personServiceModel.getSurname(),
-                        personServiceModel.getAdresse(),
-                        personServiceModel.getEmail(),
-                        personServiceModel.getPhoneNumber());
+        ProjectRepositoryModel projectRepositoryModel = new ProjectRepositoryModel
+                        (projectServiceModel.getName(),
+                        projectServiceModel.getDirecteur(),
+                        projectServiceModel.getPlace());
 
 
         try {
             // Sauvegarde en base de données
-            PersonRepositoryModel savedPerson = personRepository.save(personRepositoryModel);
+            ProjectRepositoryModel savedProject = projectRepository.save(projectRepositoryModel);
 
             // Vérifie si la sauvegarde a réussi
-            return savedPerson != null;
+            return savedProject != null;
         } catch (Exception e) {
             // Gérer l'exception (log, rollback, etc.)
             e.printStackTrace();
@@ -56,16 +49,16 @@ public class PersonService {
         }
     }
 
-    public boolean deletePersonById(Long id) {
+    public boolean deleteProjectById(Long id) {
         try {
-            // Vérifie si la personne avec l'ID spécifié existe
-            Optional<PersonRepositoryModel> personOptional = personRepository.findById(id);
-            if (personOptional.isPresent()) {
-                // La personne avec l'ID spécifié a été trouvée, supprimer de la base de données
-                personRepository.deleteById(id);
+            // Vérifie si le projet avec l'ID spécifié existe
+            Optional<ProjectRepositoryModel> projectOptional = projectRepository.findById(id);
+            if (projectOptional.isPresent()) {
+                // Le projet avec l'ID spécifié a été trouvée, supprimer de la base de données
+                projectRepository.deleteById(id);
                 return true; // Suppression réussie
             } else {
-                return false; // La personne avec l'ID spécifié n'a pas été trouvée
+                return false; // Le projet avec l'ID spécifié n'a pas été trouvée
             }
         } catch (Exception e) {
             // Gérer l'exception (log, rollback, etc.)
@@ -77,53 +70,49 @@ public class PersonService {
 
 
 
-    public PersonServiceModel findById(Long id) {
+    public ProjectServiceModel findById(Long id) {
 
-        Optional<PersonRepositoryModel> personRepositoryModel = personRepository.findById(id);
+        Optional<ProjectRepositoryModel> projectRepositoryModel = projectRepository.findById(id);
 
-        if(personRepositoryModel.isEmpty())
+        if(projectRepositoryModel.isEmpty())
         {
             return null;
         } else {
-            return new PersonServiceModel(
-                     personRepositoryModel.get().getName(),
-                     personRepositoryModel.get().getSurname(),personRepositoryModel.get().getAdresse(),personRepositoryModel.get().getEmail(),personRepositoryModel.get().getPhoneNumber());
+            return new ProjectServiceModel(
+                      projectRepositoryModel.get().getName(),
+                      projectRepositoryModel.get().getDirecteur(),projectRepositoryModel.get().getPlace());
         }
     }
 
-    public PersonServiceModel findByName(String name) {
+    public ProjectServiceModel findByName(String name) {
 
         // Utiliser le repository pour une recherche par nom
-        Optional<PersonRepositoryModel> personRepositoryModel = personRepository.findByName(name);
+        Optional<ProjectRepositoryModel> projectRepositoryModel = projectRepository.findByName(name);
 
-        if (personRepositoryModel != null) {
+        if (projectRepositoryModel != null) {
             // Si un nom correspondant est trouvé, le mapper vers un objet PersonServiceModel
 
-            PersonServiceModel personServiceModel = new PersonServiceModel();
-            personServiceModel.setId(Optional.ofNullable(personRepositoryModel.get().getId()));
-            personServiceModel.setName(personRepositoryModel.get().getName());
-            personServiceModel.setSurname(personRepositoryModel.get().getSurname());
-            personServiceModel.setAdresse(personRepositoryModel.get().getAdresse());
-            personServiceModel.setEmail(personRepositoryModel.get().getEmail());
-            personServiceModel.setPhoneNumber(personRepositoryModel.get().getPhoneNumber());
-            System.out.println(personServiceModel);
-            return personServiceModel;
+            ProjectServiceModel projectServiceModel = new ProjectServiceModel();
+            projectServiceModel.setId(Optional.ofNullable(projectRepositoryModel.get().getId()));
+            projectServiceModel.setName(projectRepositoryModel.get().getName());
+            projectServiceModel.setDirecteur(projectRepositoryModel.get().getDirecteur());
+            projectServiceModel.setPlace(projectRepositoryModel.get().getPlace());
+            System.out.println(projectServiceModel);
+            return projectServiceModel;
         } else {
 
             return null;
         }
     }
 
-    public boolean update(Long id, PersonServiceModel personServiceModel) {
-        PersonRepositoryModel personRepositoryModel=new PersonRepositoryModel
-                (personServiceModel.getName(),
-                personServiceModel.getSurname(),
-                personServiceModel.getAdresse(),
-                personServiceModel.getEmail(),
-                personServiceModel.getPhoneNumber());
+    public boolean update(Long id, ProjectServiceModel projectServiceModel) {
+        ProjectRepositoryModel projectRepositoryModel=new ProjectRepositoryModel
+                (projectServiceModel.getName(),
+                        projectServiceModel.getDirecteur(),
+                        projectServiceModel.getPlace());
 
-        PersonRepositoryModel personRepositoryModelReturned= personRepository.save( personRepositoryModel);
-        return personRepositoryModelReturned !=null;
+        ProjectRepositoryModel projectRepositoryModelReturned= projectRepository.save( projectRepositoryModel);
+        return projectRepositoryModelReturned !=null;
     }
 }
 

@@ -1,7 +1,5 @@
-package com.CDA.PLanning.human.controller;
+package com.CDA.PLanning.planning.controller.project;
 import lombok.*;
-
-import java.util.Optional;
 
 /**
  * The type Person dto.
@@ -11,11 +9,10 @@ import java.util.Optional;
 @NoArgsConstructor
 @Setter
 @Getter
-public class PersonDTO {
+public class ProjectDTO {
     private Long id;
     private String name;
-    private String surname;
-    private String adresse;
-    private String email;
-    private String phoneNumber;
+    private String Directeur;
+    private String place;
+
 }

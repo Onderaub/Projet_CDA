@@ -5,6 +5,7 @@ import com.CDA.PLanning.exceptions.PersonNotFoundException;
 import com.CDA.PLanning.human.service.AdminServiceModel;
 import com.CDA.PLanning.human.service.PersonService;
 import com.CDA.PLanning.human.service.PersonServiceModel;
+import com.CDA.PLanning.planning.service.project.ProjectServiceModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +19,14 @@ public class PersonController {
     PersonService personService;
     @PostMapping("/add")
     public boolean addPerson(@RequestBody PersonDTO personDTO) {
-        PersonServiceModel personServiceModel = Mapper.INSTANCE.toPersonServiceModel(personDTO);
+        PersonServiceModel personServiceModel= new PersonServiceModel(personDTO.getName(),personDTO.getSurname(), personDTO.getAdresse(),personDTO.getEmail(),personDTO.getPhoneNumber());
         return personService.addPerson(personServiceModel);
     }
 
     /**
      * Delete by id response entity.
      *
-     * @param id the id
+     *
      * @return the response entity
      */
     @GetMapping()
@@ -41,7 +42,7 @@ public class PersonController {
             personDTO.setAdresse(foundPerson.getAdresse());
             personDTO.setEmail(foundPerson.getEmail());
             personDTO.setPhoneNumber(foundPerson.getPhoneNumber());
-           // dvdStoreDTO.setImage(foundPerson.getImage());
+           // personDTO.setImage(foundPerson.getImage());
 
 
 
@@ -52,10 +53,14 @@ public class PersonController {
             return ResponseEntity.notFound().build(); // Réponse HTTP 404
         }
     }
-    @PutMapping("/{id}")
+    @PutMapping("up/{id}")
     public boolean updateById(@RequestBody PersonDTO personDTO, @PathVariable Long id) {    // lis id dans l'url
 
-        PersonServiceModel personServiceModel = new PersonServiceModel(personDTO.getName(), personDTO.getSurname(),personDTO.getAdresse(),  personDTO.getEmail(),personDTO.getPhoneNumber());
+        PersonServiceModel personServiceModel = new PersonServiceModel             (personDTO.getName(),
+                personDTO.getSurname(),
+                personDTO.getAdresse(),
+                personDTO.getEmail(),
+                personDTO.getPhoneNumber());
         return personService.update(id,personServiceModel);
     }
     @GetMapping("/{id}")
@@ -74,6 +79,19 @@ public class PersonController {
 
 
 
+        }
+
+        @DeleteMapping("/del/{id}")
+
+        public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+            boolean success = personService.deletePersonById(id);
+
+            if (success) {
+                return ResponseEntity.status(HttpStatus.OK).build();
+                // Succès (HTTP 200)
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Non trouvé (HTTP 404)
+            }
         }
     }
 

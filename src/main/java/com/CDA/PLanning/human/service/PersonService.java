@@ -57,17 +57,20 @@ public class PersonService {
     }
 
     public boolean deletePersonById(Long id) {
-
         try {
-
-            // L'objet personne avec l'ID spécifié a été trouvé, supprimerle de la base de données
-            personRepository.deleteById(id);
-            return true; // Suppression réussie
-        }
-        catch (Exception e) {
-            System.out.println(e);
-            return false; // L'objet avec l'ID spécifié n'a pas été trouvé
-
+            // Vérifie si la personne avec l'ID spécifié existe
+            Optional<PersonRepositoryModel> personOptional = personRepository.findById(id);
+            if (personOptional.isPresent()) {
+                // La personne avec l'ID spécifié a été trouvée, supprimer de la base de données
+                personRepository.deleteById(id);
+                return true; // Suppression réussie
+            } else {
+                return false; // La personne avec l'ID spécifié n'a pas été trouvée
+            }
+        } catch (Exception e) {
+            // Gérer l'exception (log, rollback, etc.)
+            e.printStackTrace();
+            return false;
         }
     }
 
@@ -89,11 +92,13 @@ public class PersonService {
     }
 
     public PersonServiceModel findByName(String name) {
-        // Utiliser le repository pour rechercher le DVD par nom
+
+        // Utiliser le repository pour une recherche par nom
         Optional<PersonRepositoryModel> personRepositoryModel = personRepository.findByName(name);
 
         if (personRepositoryModel != null) {
-            // Si un DVD correspondant est trouvé, mapper-le vers un objet DvdServiceModel
+            // Si un nom correspondant est trouvé, le mapper vers un objet PersonServiceModel
+
             PersonServiceModel personServiceModel = new PersonServiceModel();
             personServiceModel.setId(Optional.ofNullable(personRepositoryModel.get().getId()));
             personServiceModel.setName(personRepositoryModel.get().getName());
@@ -110,7 +115,12 @@ public class PersonService {
     }
 
     public boolean update(Long id, PersonServiceModel personServiceModel) {
-        PersonRepositoryModel personRepositoryModel=new PersonRepositoryModel(personServiceModel.getName(), personServiceModel.getSurname(), personServiceModel.getAdresse(), personServiceModel.getEmail(),personServiceModel.getPhoneNumber());
+        PersonRepositoryModel personRepositoryModel=new PersonRepositoryModel
+                (personServiceModel.getName(),
+                personServiceModel.getSurname(),
+                personServiceModel.getAdresse(),
+                personServiceModel.getEmail(),
+                personServiceModel.getPhoneNumber());
 
         PersonRepositoryModel personRepositoryModelReturned= personRepository.save( personRepositoryModel);
         return personRepositoryModelReturned !=null;
