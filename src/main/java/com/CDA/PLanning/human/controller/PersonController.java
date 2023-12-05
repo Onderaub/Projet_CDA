@@ -2,6 +2,8 @@ package com.CDA.PLanning.human.controller;
 
 import com.CDA.PLanning.Mapper;
 import com.CDA.PLanning.exceptions.PersonNotFoundException;
+import com.CDA.PLanning.human.repository.AdminRepositoryModel;
+import com.CDA.PLanning.human.repository.PersonRepositoryModel;
 import com.CDA.PLanning.human.service.AdminServiceModel;
 import com.CDA.PLanning.human.service.PersonService;
 import com.CDA.PLanning.human.service.PersonServiceModel;
@@ -11,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
 
 @RequestMapping("person")
 @RestController
@@ -55,7 +59,6 @@ public class PersonController {
     }
     @PutMapping("up/{id}")
     public boolean updateById(@RequestBody PersonDTO personDTO, @PathVariable Long id) {    // lis id dans l'url
-
         PersonServiceModel personServiceModel = new PersonServiceModel             (personDTO.getName(),
                 personDTO.getSurname(),
                 personDTO.getAdresse(),
@@ -93,6 +96,14 @@ public class PersonController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Non trouvé (HTTP 404)
             }
         }
+    @GetMapping("/all")
+    public ArrayList<PersonDTO> findAll(){
+
+        ArrayList<PersonDTO> personDTOs= new ArrayList<>();
+        ArrayList<PersonRepositoryModel> personServiceModels = personService.findAllPerson();
+        personServiceModels.forEach((item)->personDTOs.add(new PersonDTO(item.getId(),item.getName(),item.getSurname(), item.getAdresse(),item.getEmail(),item.getPhoneNumber())));
+        return personDTOs;
     }
+}
 
 

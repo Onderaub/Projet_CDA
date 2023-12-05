@@ -1,10 +1,15 @@
 package com.CDA.PLanning.planning.service.absence;
 
+
 import com.CDA.PLanning.planning.repository.absence.AbsenceRepository;
 import com.CDA.PLanning.planning.repository.absence.AbsenceRepositoryModel;
+import com.CDA.PLanning.planning.repository.tool.ToolRepositoryModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PutMapping;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class AbsenceService {
@@ -50,10 +55,38 @@ public class AbsenceService {
     @PutMapping("/{id}")
     public boolean update(Long id, AbsenceServiceModel absenceServiceModel) {
 
-        AbsenceRepositoryModel absenceRepositoryModel=new AbsenceRepositoryModel( absenceServiceModel.getName());
+        AbsenceRepositoryModel absenceRepositoryModel=new AbsenceRepositoryModel( id, absenceServiceModel.getName());
 
         AbsenceRepositoryModel absenceRepositoryModelReturned= absenceRepository.save( absenceRepositoryModel);
         return absenceRepositoryModelReturned !=null;
+    }
+
+    public AbsenceServiceModel findByName(String name) {
+        // Utiliser le repository pour une recherche par nom
+        Optional<AbsenceRepositoryModel> absenceRepositoryModel = absenceRepository.findByName(name);
+
+        if (absenceRepositoryModel != null) {
+            // Si un nom correspondant est trouvé, le mapper vers un objet PersonServiceModel
+
+            AbsenceServiceModel absenceServiceModel = new AbsenceServiceModel();
+            absenceServiceModel.setId(Optional.ofNullable(absenceRepositoryModel.get().getId()));
+            absenceServiceModel.setName(absenceRepositoryModel.get().getName());
+
+            System.out.println(absenceServiceModel);
+            return absenceServiceModel;
+        } else {
+
+            return null;
+        }
+    }
+    public ArrayList<AbsenceRepositoryModel> findAllAbsence() {
+        ArrayList<AbsenceRepositoryModel> absenceServiceModels= new ArrayList<>();
+
+        ArrayList<AbsenceRepositoryModel> AbsenceRepositoryModels= (ArrayList<AbsenceRepositoryModel>) absenceRepository.findAll();
+        AbsenceRepositoryModels.forEach((item)->absenceServiceModels.add(new AbsenceRepositoryModel
+                (item.getId(),
+                        item.getName())));
+        return absenceServiceModels;
     }
 }
 

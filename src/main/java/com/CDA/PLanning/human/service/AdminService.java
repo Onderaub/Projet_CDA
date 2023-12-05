@@ -1,19 +1,12 @@
 package com.CDA.PLanning.human.service;
 
-import com.CDA.PLanning.exceptions.PersonNotFoundException;
-import com.CDA.PLanning.human.controller.AdminDTO;
-import com.CDA.PLanning.human.controller.PersonDTO;
 import com.CDA.PLanning.human.repository.AdminRepository;
 import com.CDA.PLanning.human.repository.AdminRepositoryModel;
 import com.CDA.PLanning.human.repository.PersonRepository;
-import com.CDA.PLanning.human.repository.PersonRepositoryModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 /**
@@ -77,4 +70,34 @@ public class AdminService  extends PersonService {
     }
 
 
+    public boolean deleteAdminById(Long id) {
+        try {
+            // Vérifie si l' admin' avec l'ID spécifié existe
+            Optional<AdminRepositoryModel> adminOptional = adminRepository.findById(id);
+            if (adminOptional.isPresent()) {
+                // L'admin avec l'ID spécifié a été trouvée, supprimer de la base de données
+                adminRepository.deleteById(id);
+                return true; // Suppression réussie
+            } else {
+                return false; // La personne avec l'ID spécifié n'a pas été trouvée
+            }
+        } catch (Exception e) {
+            // Gérer l'exception (log, rollback, etc.)
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public ArrayList<AdminRepositoryModel> findAll() {
+        ArrayList<AdminRepositoryModel> adminServiceModels= new ArrayList<>();
+
+        ArrayList<AdminRepositoryModel>AdminRepositorieModels= (ArrayList<AdminRepositoryModel>) adminRepository.findAll();
+        AdminRepositorieModels.forEach((item)->adminServiceModels.add(new AdminRepositoryModel
+                (item.getId(),
+                        item.getName(),
+                        item.getSurname(),
+                        item.getAdresse(),
+                        item.getEmail(),
+                        item.getPhoneNumber())));
+        return adminServiceModels;
+    }
 }

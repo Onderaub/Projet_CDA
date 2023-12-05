@@ -1,13 +1,19 @@
 package com.CDA.PLanning.planning.controller.tool;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Optional;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
 public class ToolDTO {
-    private Long toolId;
+    private Long id;
     private String name;
+
+
+    public static void setId(Optional<Long> id) {
+    }
 }

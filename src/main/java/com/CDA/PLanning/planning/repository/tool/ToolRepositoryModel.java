@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 public class ToolRepositoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "toolId")
-    private Long toolId;
+    @Column(name = "id")
+    private Long id;
     @Column(name = "name")
     private String name;
 

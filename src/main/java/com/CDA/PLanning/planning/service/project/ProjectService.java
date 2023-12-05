@@ -3,9 +3,11 @@ package com.CDA.PLanning.planning.service.project;
 
 import com.CDA.PLanning.planning.repository.project.ProjectRepository;
 import com.CDA.PLanning.planning.repository.project.ProjectRepositoryModel;
+import com.CDA.PLanning.planning.repository.tool.ToolRepositoryModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 /**
@@ -27,7 +29,7 @@ public class ProjectService {
                 projectServiceModel.getPlace() == null ) {
             return false;
         }
-        // Enregistre Le model du personne au format de la bdd en quantifiant les éléments Nom, prenom, etc
+        // Enregistre Le model du projet au format de la bdd en quantifiant les éléments Nom, direction, etc
         ProjectRepositoryModel projectRepositoryModel = new ProjectRepositoryModel
                         (projectServiceModel.getName(),
                         projectServiceModel.getDirecteur(),
@@ -107,12 +109,25 @@ public class ProjectService {
 
     public boolean update(Long id, ProjectServiceModel projectServiceModel) {
         ProjectRepositoryModel projectRepositoryModel=new ProjectRepositoryModel
-                (projectServiceModel.getName(),
+                (id,    projectServiceModel.getName(),
                         projectServiceModel.getDirecteur(),
                         projectServiceModel.getPlace());
 
         ProjectRepositoryModel projectRepositoryModelReturned= projectRepository.save( projectRepositoryModel);
         return projectRepositoryModelReturned !=null;
+    }
+
+    public ArrayList<ProjectRepositoryModel> findAllProject() {
+        ArrayList<ProjectRepositoryModel> projectServiceModels= new ArrayList<>();
+
+        ArrayList<ProjectRepositoryModel>ProjectRepositorieModels= (ArrayList<ProjectRepositoryModel>) projectRepository.findAll();
+        ProjectRepositorieModels.forEach((item)->projectServiceModels.add(new ProjectRepositoryModel
+                (item.getId(),
+                        item.getName(),
+                        item.getDirecteur(),
+                        item.getPlace()
+                        )));
+        return projectServiceModels;
     }
 }
 

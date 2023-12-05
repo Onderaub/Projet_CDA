@@ -1,6 +1,7 @@
 package com.CDA.PLanning.human.service;
 
 import com.CDA.PLanning.exceptions.PersonNotFoundException;
+import com.CDA.PLanning.human.repository.AdminRepositoryModel;
 import com.CDA.PLanning.human.repository.PersonRepository;
 
 import com.CDA.PLanning.human.repository.PersonRepositoryModel;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 /**
@@ -116,7 +118,8 @@ public class PersonService {
 
     public boolean update(Long id, PersonServiceModel personServiceModel) {
         PersonRepositoryModel personRepositoryModel=new PersonRepositoryModel
-                (personServiceModel.getName(),
+                (id,
+                personServiceModel.getName(),
                 personServiceModel.getSurname(),
                 personServiceModel.getAdresse(),
                 personServiceModel.getEmail(),
@@ -124,6 +127,20 @@ public class PersonService {
 
         PersonRepositoryModel personRepositoryModelReturned= personRepository.save( personRepositoryModel);
         return personRepositoryModelReturned !=null;
+    }
+
+    public ArrayList<PersonRepositoryModel> findAllPerson() {
+        ArrayList<PersonRepositoryModel> personServiceModels= new ArrayList<>();
+
+        ArrayList<PersonRepositoryModel>PersonRepositorieModels= (ArrayList<PersonRepositoryModel>) personRepository.findAll();
+        PersonRepositorieModels.forEach((item)->personServiceModels.add(new PersonRepositoryModel
+                (item.getId(),
+                        item.getName(),
+                        item.getSurname(),
+                        item.getAdresse(),
+                        item.getEmail(),
+                        item.getPhoneNumber())));
+        return personServiceModels;
     }
 }
 

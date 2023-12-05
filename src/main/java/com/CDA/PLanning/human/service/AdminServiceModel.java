@@ -8,6 +8,7 @@ import java.util.Optional;
  * The type Admin service model.
  */
 @Getter
+@Data
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor

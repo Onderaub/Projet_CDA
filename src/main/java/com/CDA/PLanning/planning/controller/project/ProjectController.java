@@ -2,12 +2,19 @@ package com.CDA.PLanning.planning.controller.project;
 
 import com.CDA.PLanning.Mapper;
 import com.CDA.PLanning.exceptions.ProjectNotFoundException;
+import com.CDA.PLanning.human.controller.PersonDTO;
+import com.CDA.PLanning.human.service.PersonServiceModel;
+import com.CDA.PLanning.planning.controller.tool.ToolDTO;
+import com.CDA.PLanning.planning.repository.project.ProjectRepositoryModel;
+import com.CDA.PLanning.planning.repository.tool.ToolRepositoryModel;
 import com.CDA.PLanning.planning.service.project.ProjectService;
 import com.CDA.PLanning.planning.service.project.ProjectServiceModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RequestMapping("project")
 @RestController
@@ -80,6 +87,21 @@ public class ProjectController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Non trouvé (HTTP 404)
             }
         }
+    @PutMapping("up/{id}")
+    public boolean updateById(@RequestBody ProjectDTO projectDTO, @PathVariable Long id) {    // lis id dans l'url
+        ProjectServiceModel projectServiceModel = new ProjectServiceModel             (projectDTO.getName(),projectDTO.getDirecteur(),projectDTO.getPlace()
+                );
+        return projectService.update(id,projectServiceModel);
+    }
+
+    @GetMapping("/all")
+    public ArrayList<ProjectDTO> findAll(){
+
+        ArrayList<ProjectDTO> projectDTOs= new ArrayList<>();
+        ArrayList<ProjectRepositoryModel> projectServiceModels = projectService.findAllProject();
+        projectServiceModels.forEach((item)->projectDTOs.add(new ProjectDTO(item.getId(),item.getName(),item.getDirecteur(),item.getPlace())));
+        return projectDTOs;
+    }
     }
 
 

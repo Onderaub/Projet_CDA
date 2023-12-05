@@ -15,4 +15,6 @@ public class ProjectDTO {
     private String Directeur;
     private String place;
 
+    public ProjectDTO(Long id, String name) {
+    }
 }

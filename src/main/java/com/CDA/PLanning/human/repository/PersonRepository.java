@@ -8,7 +8,7 @@ import java.util.Optional;
  * The interface Person repository.
  */
 public interface PersonRepository extends CrudRepository<PersonRepositoryModel, Long> {
-    PersonRepositoryModel save(PersonRepositoryModel personnRepositoryModel);
+    PersonRepositoryModel save(PersonRepositoryModel personRepositoryModel);
 
     Iterable<PersonRepositoryModel> findAll();
 

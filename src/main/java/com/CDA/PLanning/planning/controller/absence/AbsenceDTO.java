@@ -1,15 +1,16 @@
 package com.CDA.PLanning.planning.controller.absence;
 
-import jakarta.persistence.Column;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
 public class AbsenceDTO {
-    private Long absenceId;
+    private Long id;
     private String name;
+
 
 }

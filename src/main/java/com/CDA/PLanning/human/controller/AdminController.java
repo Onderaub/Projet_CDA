@@ -1,7 +1,9 @@
 package com.CDA.PLanning.human.controller;
 
 import com.CDA.PLanning.Mapper;
+import com.CDA.PLanning.exceptions.AdminNotFoundException;
 import com.CDA.PLanning.exceptions.PersonNotFoundException;
+import com.CDA.PLanning.human.repository.AdminRepositoryModel;
 import com.CDA.PLanning.human.service.AdminService;
 import com.CDA.PLanning.human.service.AdminServiceModel;
 import com.CDA.PLanning.human.service.PersonServiceModel;
@@ -13,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 /**
@@ -73,5 +76,36 @@ public class AdminController {
 
 
     }
+    @PutMapping("up/{id}")
+    public boolean updateById(@RequestBody AdminDTO adminDTO, @PathVariable Long id) {    // lis id dans l'url
+        AdminServiceModel adminServiceModel = new AdminServiceModel             (adminDTO.getName(),
+                adminDTO.getSurname(),
+                adminDTO.getAdresse(),
+                adminDTO.getEmail(),
+                adminDTO.getPhoneNumber());
+        return adminService.update(id,adminServiceModel);
+    }
 
+
+    @DeleteMapping("/del/{id}")
+
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        boolean success = adminService.deleteAdminById(id);
+
+        if (success) {
+            return ResponseEntity.status(HttpStatus.OK).build();
+            // Succès (HTTP 200)
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Non trouvé (HTTP 404)
+        }
+
+    }
+    @GetMapping("/all")
+    public ArrayList<AdminDTO> findAll(){
+
+        ArrayList<AdminDTO> adminDTOs= new ArrayList<>();
+        ArrayList<AdminRepositoryModel> adminServiceModels = adminService.findAll();
+        adminServiceModels.forEach((item)->adminDTOs.add(new AdminDTO(item.getId(),item.getName(),item.getSurname(), item.getAdresse(),item.getEmail(),item.getPhoneNumber())));
+        return adminDTOs;
+    }
 }

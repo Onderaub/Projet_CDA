@@ -17,7 +17,7 @@ public class AdminRepositoryModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idAdmin")
+    @Column(name="id")
     private Long id;
     @Column(name = "name")
     private String name;
