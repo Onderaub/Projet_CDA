@@ -1,0 +1,35 @@
+<div class="top-header">
+         <div class="logoBicyclette">
+             <a href="/HomeAdmin"></a>
+             <img src="assets/images/logoCompta.png" alt="">
+             <h2 class="titre">
+                 La bicyclette
+             </h2>
+         </div>
+     
+         <div *ngIf="authService.is_Auth(); else login ">
+             <button class="btn" (click)="removeToken()"><!--la methode doit toujours avoir une parenthese-->
+                 <img src="assets/images/eric.png" alt="connexion icon" style="width: 60px" title="Déconnexion">
+             </button>
+         </div>
+         <ng-template #login>
+             <a href="/login">
+                 <img src="assets/images/Lova.png" alt="connexion icon" style="width: 60px" title="Connexion">
+             </a>
+         </ng-template>
+     </div>
+     <div class="bot-header">
+         <div class="left-bot-header">
+             <h2 class="link">
+                 <a href="project/all">Liste-Projet</a>
+             </h2>
+         </div>
+         <div class="center-bot-header">
+             <img src="assets/images/Labicyclette.png" alt="compagny logo" style="width: 140px">
+         </div>
+         <div class="right-bot-header">
+             <h2 class="link">
+                 <a href="person/all">Liste-Personne</a>
+             </h2>
+         </div>
+     </div>

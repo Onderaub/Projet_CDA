@@ -1,0 +1,59 @@
+<main>
+         <section class="chercheur desktop-layout">
+           <div class="console">
+   
+             <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)"><!--la methode doit toujours avoir une parenthese-->
+               <div class="form-group">
+                 <label class="text-console" for="username">Nom d'utilisateur</label>
+               </div>
+               <input type="text" id="" name="username" [(ngModel)]="personToUpDate.nom" class="form-control" required>
+   
+               <div class="form-group">
+                 <label class="text-console" for="prenom">Prénom</label>
+               </div>
+               <input type="prenom" id="" name="prenom" [(ngModel)]="personToUpDate.prenom" class="form-control" required>
+   
+               <div class="form-group">
+                 <label class="text-console" for="adresse">Adresse</label>
+               </div>
+               <input type="adresse" id="" name="adresse" [(ngModel)]="personToUpDate.adresse" class="form-control"
+                 required>
+   
+               <button type="submit" (click)="handleUpdateClickButton" class="btnAdd">Modifer</button>
+               <button type="submit" (click)="handleUpdateClickButton" class="btnDel">Supprimer</button>
+               <button type="submit" (click)="handleUpdateClickButton" class="btnSearch">Rechercher</button>
+             </form>
+   
+           </div>
+   
+   
+           <div class="project-list ">
+   
+             <table class="table table-striped">
+               <thead>
+                 <tr>
+                   <th>Id</th>
+                   <th>Nom</th>
+                   <th>Prénom</th>
+                   <th>Adresse</th>
+                   <th>Email</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr *ngFor="let person of personToShow; let index =index">
+                   <td>{{ person.id }}</td>
+                   <td>{{ person.nom }}</td>
+                   <td>{{ person.prenom }}</td>
+                   <td>{{ person.adresse }}</td>
+                   
+                   <td>
+                     <a (click)="handleUpdateClickButton(person.id)">
+                       <img src="../../assets/images/edit.png" alt="details icon" style="width: 40px" />
+                     </a>
+                   </td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+         </section>
+   </main>
