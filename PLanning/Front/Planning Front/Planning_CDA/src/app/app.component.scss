@@ -1,0 +1,34 @@
+
+
+
+
+
+       
+       .footerOff{
+         display: flex;
+         justify-content: center;
+        
+        }
+        footer {
+         
+         position: fixed;
+         bottom: 0;
+         z-index: 100;
+          text-align: center;
+          padding: 10px 0;
+          background-color: #171717;
+          color: #fff;
+          width:100%;
+          justify-content: center; /* Centrez horizontalement */
+          align-items: center; /* Centrez verticalement */
+          height: 5vh;
+        }
+ 
+        .input-group{
+         margin-right: 2.5vh;
+         margin-bottom: -5vh;
+         display: flex;
+         justify-content: flex-end;
+         align-items: baseline;
+        }
+        

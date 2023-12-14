@@ -1,0 +1,69 @@
+body {
+         font-family: Arial, Helvetica, sans-serif;
+         position: relative;
+         top: 160px;
+       }
+       .user{
+        justify-content: end;
+       }
+       header {
+         width: 100vw;
+         height: 1Ovh;
+         text-align: center;
+         position: fixed;
+       }
+      
+       .top-header {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         background-color: #0c0c6b;
+       }
+       .titre{
+        flex: 1; /* Utilisez flex pour occuper l'espace disponible */
+        text-align: center;
+        margin: 0; /* Réinitialisez la marge par défaut */
+        padding: 5px;
+        color: rgb(170, 205, 204);
+       }
+       .logoCompta{
+       display: flex;
+        z-index: 1 ;
+        height:10vh;
+        
+        top: 0%; /* Déplacez vers le bas de 50% de la hauteur de l'écran */
+        left: 0%; /* Déplacez vers la droite de 50% de la largeur de l'écran */
+
+       }
+      .link{
+        color: rgb(211, 255, 255);
+      }
+       
+       .top-header .user a {
+         text-decoration: none;
+         color: #fff;
+         margin-right: 20px;
+       }
+       
+       .bot-header {
+        display: flex;
+        width:1OOvw;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #1714b9;
+        border-bottom-left-radius: 10px; /* Arrondir le coin bas gauche */
+        border-bottom-right-radius: 10px; /* Arrondir le coin bas droit */
+    }
+       
+       .left-bot-header, .right-bot-header {
+        display: flex;
+         flex: 1;
+         font-family: Arial, Helvetica, sans-serif;
+         color: #ffffff;
+         justify-content: center;
+
+       }
+       
+       .center-bot-header img {
+         max-width: 200px;
+       }

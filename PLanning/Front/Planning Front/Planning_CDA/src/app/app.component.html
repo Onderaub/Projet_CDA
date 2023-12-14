@@ -1,0 +1,13 @@
+<ion-app *ngIf="platform.is('mobile')">
+  <ion-content>
+<app-app-navbar></app-app-navbar>
+  <ion-router-outlet></ion-router-outlet>
+  <app-app-footer></app-app-footer>
+  </ion-content>
+  </ion-app>
+  
+  <div *ngIf="platform.is('desktop')">
+           <app-app-navbar></app-app-navbar>
+           <router-outlet></router-outlet>
+           <app-app-footer></app-app-footer>
+  </div>
